@@ -109,7 +109,7 @@ class _SinglePostState extends State<SinglePost> {
                       border: InputBorder.none, hintText: 'Add Comment'),
                 ),
               ),
-              FlatButton(onPressed: () {}, child: Text("Send")),
+              FlatButton(onPressed: () {}, child: Text("send")),
             ],
           ),
         ),
