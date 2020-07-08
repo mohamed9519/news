@@ -47,15 +47,7 @@ class _SinglePostState extends State<SinglePost> {
     );
   }
 
-  Color getRandomColor({int minBrightenes = 50}) {
-    final random = Random();
-    assert(minBrightenes >= 0 && minBrightenes <= 255);
-    return Color.fromARGB(
-        0xFF,
-        minBrightenes + random.nextInt(255 - minBrightenes),
-        minBrightenes + random.nextInt(255 - minBrightenes),
-        minBrightenes + random.nextInt(255 - minBrightenes));
-  }
+
 
   Widget _drawPostDetails() {
     return Padding(
@@ -109,7 +101,7 @@ class _SinglePostState extends State<SinglePost> {
                       border: InputBorder.none, hintText: 'Add Comment'),
                 ),
               ),
-              FlatButton(onPressed: () {}, child: Text("send")),
+              FlatButton(onPressed: () {}, child: Text("Send")),
             ],
           ),
         ),
