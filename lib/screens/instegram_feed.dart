@@ -7,7 +7,13 @@ class InstegramFeed extends StatefulWidget {
 }
 
 class _InstegramFeedState extends State<InstegramFeed> {
+  List<int> ids=[];
   TextStyle _hashStyle = TextStyle(color: Colors.deepOrange);
+  @override
+  void initState() {
+    super.initState();
+    ids=[0,2,4];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +34,7 @@ class _InstegramFeedState extends State<InstegramFeed> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                   _drawCardHeader(),
+                   _drawCardHeader(position),
                   _drawTitle(),
                    _drawHash(),
                   _drawCardBody(),
@@ -45,7 +51,7 @@ class _InstegramFeedState extends State<InstegramFeed> {
     );
   }
 
-  Widget _drawCardHeader() {
+  Widget _drawCardHeader(int postion) {
     return Row(
       children: <Widget>[
         Padding(
@@ -70,7 +76,15 @@ class _InstegramFeedState extends State<InstegramFeed> {
           ],
         ),
         SizedBox(width: 50),
-        IconButton(icon:  Icon(Icons.favorite, color: Colors.grey,), onPressed: (){} ),
+        IconButton(icon:  Icon(Icons.favorite, color:(ids.contains(postion))?Colors.red: Colors.grey,), onPressed: (){
+          setState(() {
+            if(ids.contains(postion)){
+              ids.remove(postion);
+            }else{
+              ids.add(postion);
+            }
+          });
+        } ),
         Text("25",style: TextStyle(color: Colors.grey,fontSize: 16),),
       ],
     );
