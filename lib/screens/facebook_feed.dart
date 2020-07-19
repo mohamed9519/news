@@ -6,7 +6,13 @@ class FaceBookFeed extends StatefulWidget {
 }
 
 class _FaceBookFeedState extends State<FaceBookFeed> {
+  List<int> ids=[];
   TextStyle _hashStyle = TextStyle(color: Colors.deepOrange);
+  @override
+  void initState() {
+    super.initState();
+    ids=[0,2,4];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +33,7 @@ class _FaceBookFeedState extends State<FaceBookFeed> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _drawCardHeader(),
+                  _drawCardHeader(position),
                   _drawTitle(),
                   _drawHash(),
                   _drawCardBody(),
@@ -43,7 +49,7 @@ class _FaceBookFeedState extends State<FaceBookFeed> {
       ),
     );
   }
-  Widget _drawCardHeader() {
+  Widget _drawCardHeader(int postion) {
     return Row(
       children: <Widget>[
         Padding(
@@ -68,7 +74,15 @@ class _FaceBookFeedState extends State<FaceBookFeed> {
           ],
         ),
         SizedBox(width: 50),
-        IconButton(icon:  Icon(Icons.favorite, color: Colors.grey,), onPressed: (){} ),
+        IconButton(icon:  Icon(Icons.favorite, color:(ids.contains(postion))?Colors.red: Colors.grey,), onPressed: (){
+          setState(() {
+            if(ids.contains(postion)){
+              ids.remove(postion);
+            }else{
+              ids.add(postion);
+            }
+          });
+        } ),
         Text("25",style: TextStyle(color: Colors.grey,fontSize: 16),),
       ],
     );
