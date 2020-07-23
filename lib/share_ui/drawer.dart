@@ -5,6 +5,7 @@ import 'package:news_app/screens/facebook_feed.dart';
 import 'package:news_app/screens/headline_news.dart';
 import 'package:news_app/screens/home_screen.dart';
 import 'package:news_app/screens/instegram_feed.dart';
+import 'package:news_app/screens/login.dart';
 import 'package:news_app/screens/twitter_feed.dart';
 
 class NavigationDrwaer extends StatefulWidget {
@@ -13,13 +14,23 @@ class NavigationDrwaer extends StatefulWidget {
 }
 
 class _NavigationDrwaerState extends State<NavigationDrwaer> {
+  static bool isLoggedIn= true;
   List<NavMenu> navMenu= [
     NavMenu("Explore", () => HomeScreen() ),
     NavMenu("Headline News", () => HeadlineNews() ),
     NavMenu("Twitter Feed", () => TwitterFeed() ),
     NavMenu("Instagram Feed", () => InstegramFeed() ),
     NavMenu("FaceBook Feed", () => FaceBookFeed() ),
+    NavMenu("Login", () => Login() ),
   ];
+
+  @override
+  void initState(){
+    super.initState();
+    if(isLoggedIn){
+      navMenu.add( NavMenu("Logout", () => FaceBookFeed()));
+    }
+  }
   List<String> drawerString =["Explore","Headline News", "Read Later", "Videos", "Photo", "Settings","Logout"];
 
   @override
